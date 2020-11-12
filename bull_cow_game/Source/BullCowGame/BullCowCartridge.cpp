@@ -7,7 +7,8 @@ void UBullCowCartridge::InitGame()
     LivesRemaining = 4;
 }
 
-void UBullCowCartridge::PrintIntroduction() {
+void UBullCowCartridge::PrintIntroduction() 
+{
     PrintLine(TEXT("Hello weary traveller!"));
     PrintLine(TEXT("To cross this fence, answer my puzzles!"));
     PrintLine(TEXT("You'll be given blank letters, and you must guess what they are. Letters do not repeat."));
@@ -32,12 +33,18 @@ void UBullCowCartridge::OnInput(const FString& Input) // When the player hits en
 
     // Fail state 1: Words are not of the same length
     if (Input.Len() != HiddenWord.Len()) {
+        if (Input.Len() < HiddenWord.Len()) {
+            PrintLine(TEXT("Your guess is too short!"));
+        } else {
+            PrintLine(TEXT("Your guess is too long!"));
+        }
+        
         LivesRemaining--;
     }
 
     // Fail state 2: Input is not an isogram
     if (!IsIsogram(Input)) {
-
+        PrintLine(TEXT("Not an isogram :("));
     }
 
 
@@ -71,14 +78,14 @@ void UBullCowCartridge::OnInput(const FString& Input) // When the player hits en
 
 }
 
-bool UBullCowCartridge::IsIsogram(const FString& Input)
+bool UBullCowCartridge::IsIsogram(const FString& Input) 
 {
-    // n^2
-    for (int32 i=0; i < Input.Len(); i++) {
-        
-        PrintLine(FString::Printf(TEXT("i: %i"), i));
-        for (int32 j=0; j < Input.Len(); j++) {
-            PrintLine(FString::Printf(TEXT("j: %i"), j));
+    // O(n^2)
+    for (int32 i=0; i < Input.Len() - 1; i++) {
+        for (int32 j= i + 1; j < Input.Len(); j++) {
+            if (Input[i] == Input[j]) {
+                return false;
+            }
         }
     }
 
