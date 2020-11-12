@@ -51,7 +51,7 @@ private:
 	int32 MaxLines = 10;
 
 	UPROPERTY(EditAnywhere)
-	int32 MaxColumns = 70;
+	int32 MaxColumns = 100;
 
 	TArray<FString> Buffer;
 	FString InputLine;
