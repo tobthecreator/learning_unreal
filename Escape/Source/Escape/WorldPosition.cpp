@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "WorldPosition.h"
+#include "GameFramework/Actor.h"
 
 // Sets default values for this component's properties
 UWorldPosition::UWorldPosition()
@@ -18,10 +18,25 @@ UWorldPosition::UWorldPosition()
 void UWorldPosition::BeginPlay()
 {
 	Super::BeginPlay();
+
+	// UE_LOG Usage Examples
 	// UE_LOG(LogTemp, Error, TEXT("Test error log"));
 	// UE_LOG(LogTemp, Warning, TEXT("Test warning log"));
 	// UE_LOG(LogTemp, Display, TEXT("Test display log"));
 	
+	// Pointer References
+	// FString
+	// FString exString = TEXT("exString");
+	// FString* exStringPtr = &exString;
+	// UE_LOG(LogTemp, Display, TEXT("%s"), **exStringPtr);
+
+	// Int32
+	// int32 exInt = 25;
+	// int32* exIntPtr = &exInt;
+	// UE_LOG(LogTemp, Display, TEXT("%i"), *exIntPtr);
+
+	// Log Owner Name
+	UE_LOG(LogTemp, Display, TEXT("Owner name: %s"), *GetOwner()->GetName());
 }
 
 
