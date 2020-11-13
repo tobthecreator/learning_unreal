@@ -36,7 +36,13 @@ void UWorldPosition::BeginPlay()
 	// UE_LOG(LogTemp, Display, TEXT("%i"), *exIntPtr);
 
 	// Log Owner Name
-	UE_LOG(LogTemp, Display, TEXT("Owner name: %s"), *GetOwner()->GetName());
+	// UE_LOG(LogTemp, Display, TEXT("Owner name: %s"), *GetOwner()->GetName());
+
+	FString ActorTransform = GetOwner()->GetActorTransform().ToString();
+	UE_LOG(LogTemp, Display, TEXT("AActor Transfrom: %s"), *ActorTransform);
+
+	FVector ActorPosition = GetOwner()->GetActorLocation();
+	UE_LOG(LogTemp, Display, TEXT("FVector: %s"), *ActorPosition.ToString());
 }
 
 
